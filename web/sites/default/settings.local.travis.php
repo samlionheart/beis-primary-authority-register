@@ -1,5 +1,9 @@
 <?php
 
+// Ensure travis always runs with the same memory that other environments do.
+ini_set('memory_limit', '512M');
+ini_set('max_execution_time', 900);
+
 $databases['default']['default'] = array (
   'database' => 'par',
   'username' => 'par',
@@ -20,6 +24,3 @@ $config['config_split.config_split.dev_config']['status']= TRUE;
 if (file_exists($app_root . '/' . $site_path . '/services.local.yml')) {
   $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.local.yml';
 }
-
-// Ensure travis always runs with the same memory that other environments do.
-ini_set('memory_limit', '512M');
