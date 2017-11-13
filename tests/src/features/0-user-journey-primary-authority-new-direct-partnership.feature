@@ -25,7 +25,6 @@ Feature: New Direct Partnership For PA To Approve
 
         # CONFIRMATIONS
 
-        Then I expect that element ".error-summary" is visible
         When I click on the checkbox "#edit-business-eligible-for-partnership"
         And I click on the button "#edit-next"
         Then I expect that element ".error-summary" is visible
