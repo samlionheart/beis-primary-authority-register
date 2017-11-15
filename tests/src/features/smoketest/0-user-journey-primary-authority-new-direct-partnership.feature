@@ -1,4 +1,4 @@
-@ci @smoketest
+@smoketest
 Feature: New Direct Partnership For PA To Approve
 
     Scenario: New Direct Partnership

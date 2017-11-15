@@ -5,8 +5,9 @@ Feature: Primary Authority - Change Partnership Details
 
 #        Given I reset the test data
         Given I am logged in as "par_authority@example.com"
-        And I click on the link "See your partnerships"
-        When I add "Charlie" to the inputfield "#edit-keywords"
+        Then I expect that element "body" not contains the text "error"
+        When I click on the link "See your partnerships"
+        And I add "Charlie" to the inputfield "#edit-keywords"
         And I click on the button "#edit-submit-par-user-partnerships"
         And I click on the button "td.views-field.views-field-par-flow-link a"
 

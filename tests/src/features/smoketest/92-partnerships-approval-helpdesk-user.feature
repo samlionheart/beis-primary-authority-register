@@ -1,4 +1,4 @@
-@ci @smoketest
+@smoketest
 Feature: Enforcement notice management
 
     Scenario: Enforcement notice management

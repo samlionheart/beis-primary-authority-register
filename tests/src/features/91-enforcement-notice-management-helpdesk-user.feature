@@ -1,4 +1,4 @@
-@Pending @Bug
+@ci
 Feature: Enforcement notice management
 
     Scenario: Enforcement notice management
@@ -6,6 +6,7 @@ Feature: Enforcement notice management
         # PARTNERSHIPS DASHBOARD
 
         Given I am logged in as "par_helpdesk@example.com"
+        Then I expect that element "body" not contains the text "error"
         When I click on the button "a*=Dashboard"
         And I click on the link "See enforcement notifications"
         And I select the option with the text "Desc" for element "#edit-sort-order"

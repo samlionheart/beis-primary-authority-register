@@ -1,4 +1,4 @@
-@Pending @Bug
+@ci
 Feature: Coordinator User - Manage Addresses
 
     Scenario: Coordinator User - Manage Addresses
@@ -7,7 +7,8 @@ Feature: Coordinator User - Manage Addresses
 
 #        Given I reset the test data
         Given I am logged in as "par_coordinator@example.com"
-        And I open the url "/dashboard"
+        Then I expect that element "body" not contains the text "error"
+        When I open the url "/dashboard"
         And I click on the link "See your partnerships"
         And I click on the link "Business For Coordinated Partnership 1"
         And I expect that element "h1" is not empty
