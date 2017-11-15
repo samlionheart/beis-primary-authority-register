@@ -71,8 +71,9 @@ Feature: Business User - Manage Addresses
 
         # EDIT MAIN BUSINESS CONTACT
 
-#        When I click on the link "edit organisation contact"
-        And I click on the button "/html/body/main/div[2]/div[4]/form/div[13]/fieldset/div[2]/fieldset/a"
+# EDIT MAIN BUSINESS CONTACT
+
+        When I click on the link "edit organisation contact"
         And I add "Harvey" to the inputfield "#edit-first-name"
         And I add "Kneeslapper" to the inputfield "#edit-last-name"
         And I click on the button "#edit-save"
