@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder ".", "/vagrant", type: "nfs"
   config.vm.synced_folder ".", "/var/www/html", type: "nfs"
-  config.vm.network "forwarded_port", guest: 80, host: 8524
+  config.vm.network "forwarded_port", guest: 80, host: 8524, host_ip: "127.0.0.1"
   config.vm.provision "shell", inline: $script
   config.vm.provision :shell, :inline => "sudo rm /etc/localtime && sudo ln -s /usr/share/zoneinfo/Europe/London /etc/localtime", run: "always"
 
