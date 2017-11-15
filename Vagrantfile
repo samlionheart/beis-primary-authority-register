@@ -8,10 +8,12 @@ echo I am provisioned.
 SCRIPT
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "ubuntu/trusty64"
   config.vm.network "private_network", ip: "192.168.80.70"
 
   config.vm.synced_folder ".", "/vagrant", type: "nfs"
+  config.vm.synced_folder ".", "/var/www/html", type: "nfs"
+  config.vm.network "forwarded_port", guest: 80, host: 8524
   config.vm.provision "shell", inline: $script
   config.vm.provision :shell, :inline => "sudo rm /etc/localtime && sudo ln -s /usr/share/zoneinfo/Europe/London /etc/localtime", run: "always"
 
