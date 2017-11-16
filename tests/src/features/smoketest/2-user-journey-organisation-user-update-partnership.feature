@@ -6,7 +6,6 @@ Feature: Business User - Manage Addresses
         # PARTNERSHIPS DASHBOARD
 
         Given I am logged in as "par_business@example.com"
-        Then I expect that element "body" not contains the text "error"
         When I open the url "/dashboard"
         And I click on the link "See your partnerships"
         And I click on the link "Business For Direct Partnership 1"

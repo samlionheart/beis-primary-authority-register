@@ -5,7 +5,6 @@ Feature: Enforcement Officer/PA - Enforcement Notice Process
         # LOGIN SCREEN
 
         Given I am logged in as "par_enforcement_officer@example.com"
-        Then I expect that element "body" not contains the text "error"
         When I click on the link "Search for a partnership"
         When I add "Charlie" to the inputfield "#edit-keywords"
         And I click on the button "#edit-submit-partnership-search"

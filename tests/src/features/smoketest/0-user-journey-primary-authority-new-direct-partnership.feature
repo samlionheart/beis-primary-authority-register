@@ -4,7 +4,6 @@ Feature: New Direct Partnership For PA To Approve
     Scenario: New Direct Partnership
 
         Given I am logged in as "par_authority@example.com"
-        Then I expect that element "body" not contains the text "error"
         When I expect that element "#block-par-theme-content" contains the text "See your partnerships"
         And I expect that element "#block-par-theme-content" contains the text "Search for a partnership"
         And I expect that element "#block-par-theme-content" contains the text "See enforcement notifications"
