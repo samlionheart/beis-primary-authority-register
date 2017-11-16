@@ -52,10 +52,12 @@ apt-get install apache2
 
 apt-get install php7.1-pgsql
 apt-get install php7.1-curl
+apt-get install php7.1-xml
 
 phpenmod pgsql
 phpenmod pdo_pgsql
 phpenmod curl
+phpenmod xml
 
 service apache2 restart
 
