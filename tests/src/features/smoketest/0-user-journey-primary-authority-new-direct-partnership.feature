@@ -30,21 +30,14 @@ Feature: New Direct Partnership For PA To Approve
         And I click on the button "#edit-next"
         Then I expect that element ".error-summary" is visible
         And I click on the checkbox "#edit-local-authority-suitable-for-nomination"
-        And I click on the button "#edit-next"
-        Then I expect that element ".error-summary" is visible
         And I click on the checkbox "#edit-written-summary-agreed"
-        And I click on the button "#edit-next"
-        Then I expect that element ".error-summary" is visible
         And I click on the checkbox "#edit-terms-organisation-agreed"
         And I click on the radio "#edit-business-regulated-by-one-authority-1"
-        When I click on the button "#edit-next"
-        Then I expect that element ".error-summary" is visible
         And I expect that element "#par-partnership-application-authority-checklist" contains the text "Is this your local authority?"
         And I click on the radio "#edit-business-regulated-by-one-authority-1"
         And I click on the radio "#edit-is-local-authority-1"
   #        And I expect that element ".error-summary" contains the text "The business needs to be informed about local authority"
         When I click on the button "#edit-next"
-        Then I expect that element "error-summary" is not visible
 
         # ADD ABOUT THE PARTNERSHIP
 
@@ -56,14 +49,10 @@ Feature: New Direct Partnership For PA To Approve
 
         And I add "Business For Direct Partnership 1" to the inputfield "#edit-organisation-name"
         And I click on the button "#edit-next"
-#        And I click on the radio ".form-radio"
-#        And I click on the button "#edit-next"
 
         # CONFIRM NEW PARTNERSHIP
 
         And I click new partnership if presented with choices
-  #        And I click on the radio "#edit-par-data-organisation-id-new"
-  #        And I click on the button "#edit-next"
 
         # ADD BUSINESS DETAIL
 
