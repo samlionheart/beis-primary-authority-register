@@ -73,6 +73,13 @@ GRANT ALL PRIVILEGES ON DATABASE par TO par;
 cd /var/www/html/docker
 psql par < fresh_drupal_postgres.sql
 
-
-
-
+cd /var/www/html/web && ../vendor/bin/drush cc drush
+cd /var/www/html/web && ../vendor/bin/drush cr
+cd /var/www/html/web && ../vendor/bin/drush fsg s3backups drush-dump-production-sanitized-latest.sql.tar.gz /dump.sql.tar.gz
+cd / && tar --no-same-owner -zxvf dump.sql.tar.gz
+cd /var/www/html/web && ../vendor/bin/drush @dev --root=/var/www/html/web sql-drop -y
+cd /var/www/html/web && ../vendor/bin/drush sql-cli @dev --root=/var/www/html/web < /drush-dump-production-sanitized-latest.sql && rm /drush-dump-production-sanitized-latest.sql
+cd /var/www/html/web && ../vendor/bin/drush cc drush
+cd /var/www/html/web && ../vendor/bin/drush cr
+cd /var/www/html && sh drupal-update.sh /var/www/html
+cd /var/www/html/web && ../vendor/bin/drush pcw
