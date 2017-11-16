@@ -51,8 +51,12 @@ apt-get install -y php7.1
 apt-get install apache2
 
 apt-get install php7.1-pgsql
+apt-get install php7.1-curl
+
 phpenmod pgsql
 phpenmod pdo_pgsql
+phpenmod curl
+
 service apache2 restart
 
 sed -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/html\/web/g' /etc/apache2/sites-available/000-default.conf
