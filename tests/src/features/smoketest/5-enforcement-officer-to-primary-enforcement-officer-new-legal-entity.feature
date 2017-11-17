@@ -1,13 +1,12 @@
-@ci @PAR859 @PAR962
+@smoketest
 Feature: Enforcement Officer/PA - Enforcement Notice Process
 
     Scenario: Enforcement Officer/PA - Issue enforcement notice
-
         # LOGIN SCREEN
 
         Given I am logged in as "par_enforcement_officer@example.com"
         When I click on the link "Search for a partnership"
-        And I add "Charlie" to the inputfield "#edit-keywords"
+        When I add "Charlie" to the inputfield "#edit-keywords"
         And I click on the button "#edit-submit-partnership-search"
         When I click on the button "td.views-field.views-field-authority-name a"
 
@@ -67,8 +66,6 @@ Feature: Enforcement Officer/PA - Enforcement Notice Process
         And I expect that element "#par-enforcement-notice-raise-confirm" contains the text "action summary enforcement notice"
         And I expect that element "#par-enforcement-notice-raise-confirm" contains the text "Title of enforcement notice Four"
         And I expect that element "#par-enforcement-notice-raise-confirm" contains the text "Some details about the enforcement notice"
-        And I expect that element "#par-enforcement-notice-raise-confirm" contains the text "Once the primary authority receives this notification, they have 5 working days to respond to you if they intend to block the action"
-        And I expect that element "#par-enforcement-notice-raise-confirm" contains the text "You will be notified by email of the outcome of this notification"
 
         # CHECK EO DETAILS
 
@@ -77,15 +74,6 @@ Feature: Enforcement Officer/PA - Enforcement Notice Process
         And I expect that element "#edit-enforcement-officer-telephone" contains the text "01234780898"
         And I expect that element "#edit-enforcement-officer-email" contains the text "par_enforcement_officer@example.com"
 
-#        When I store all EO data to use in later step
-
         When I click on the button "#edit-save"
         Then I expect that element "h1.heading-xlarge" contains the text "Primary Authority Register"
 
-#       # CHECK ALL AUTHORITY MEMBERS NOTIFIED #PAR-859 #PAR-962
-#
-#        And email body should contain all relevant EO data
-#
-#        # ALL AUTHORITY MEMBERS NOTIFIED #PAR-962
-#
-#        And I expect that notification email has been sent to all authority members
