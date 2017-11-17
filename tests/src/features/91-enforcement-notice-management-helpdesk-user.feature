@@ -1,4 +1,4 @@
-@Pending @Bug
+@ci
 Feature: Enforcement notice management
 
     Scenario: Enforcement notice management
@@ -16,7 +16,7 @@ Feature: Enforcement notice management
         And I click on the link "Title of enforcement notice Two"
         And I click on the radio "#edit-actions-0-primary-authority-status-approved"
         And I click on the button "#edit-actions-next"
-        Then I expect that element "h1" contains the text "Confirm Enforcement Notice"
+        Then I expect that element "#block-par-theme-page-title" contains the text "Confirm Enforcement Notice"
         And I click on the button "#edit-actions-next"
 #       Then I expect that element "#par-rd-help-desk-approve" contains the text "Enforcement allowed"
 

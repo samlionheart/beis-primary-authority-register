@@ -1,17 +1,16 @@
-@ci
+@Pending @smoketest
 Feature: Enforcement notice management
 
     Scenario: Enforcement notice management
 
         # PARTNERSHIPS DASHBOARD
 
-#        Given I reset the test data
         Given I am logged in as "par_helpdesk@example.com"
         When I add "Business For Direct Partnership 1" to the inputfield "#edit-keywords"
         And I select the option with the text "- Any -" for element "#edit-partnership-status"
         And I click on the button "#edit-submit-helpdesk-dashboard"
         When I click on the button "a*=Approve partnership"
-#
+
 #        # APPROVAL FORM
 
         And I click on the button "#edit-next"
