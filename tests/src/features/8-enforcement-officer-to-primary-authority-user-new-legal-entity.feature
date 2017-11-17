@@ -27,9 +27,12 @@ Feature: Enforcement Officer/PA - Enforcement Notice Process
 
        # ENTER EO DETAILS
 
-        When I add "Fozzie" to the inputfield "#edit-first-name"
-        When I add "Bear" to the inputfield "#edit-last-name"
-        When I add "fozzie.bear@gmail.com" to the inputfield "#edit-work-phone"
+        And I clear the inputfield "#edit-first-name"
+        And I clear the inputfield "#edit-last-name"
+        And I clear the inputfield "#edit-work-phone"
+        And I add "Fozzie" to the inputfield "#edit-first-name"
+        And I add "Bear" to the inputfield "#edit-last-name"
+        And I add "02075678944" to the inputfield "#edit-work-phone"
         And I click on the button "#edit-next"
 
         # CHOOSE LEGAL ENTITY

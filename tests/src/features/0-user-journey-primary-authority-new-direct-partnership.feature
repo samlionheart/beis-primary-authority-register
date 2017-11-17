@@ -94,3 +94,4 @@ Feature: New Direct Partnership For PA To Approve
 
         Then the inputfield "#edit-email-subject" contains the text "Invitation to join the Primary Authority Register"
         When I click on the button "#edit-next"
+

@@ -10,7 +10,7 @@ Feature: Enforcement notice management
         And I select the option with the text "- Any -" for element "#edit-partnership-status"
         And I click on the button "#edit-submit-helpdesk-dashboard"
         When I click on the button "a*=Approve partnership"
-#
+
 #        # APPROVAL FORM
 
         And I click on the button "#edit-next"

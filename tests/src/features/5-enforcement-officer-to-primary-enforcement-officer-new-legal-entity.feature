@@ -1,7 +1,8 @@
-@ci
+@ci @PAR859 @PAR962
 Feature: Enforcement Officer/PA - Enforcement Notice Process
 
     Scenario: Enforcement Officer/PA - Issue enforcement notice
+
         # LOGIN SCREEN
 
         Given I am logged in as "par_enforcement_officer@example.com"
@@ -76,6 +77,15 @@ Feature: Enforcement Officer/PA - Enforcement Notice Process
         And I expect that element "#edit-enforcement-officer-telephone" contains the text "01234780898"
         And I expect that element "#edit-enforcement-officer-email" contains the text "par_enforcement_officer@example.com"
 
+#        When I store all EO data to use in later step
+
         When I click on the button "#edit-save"
         Then I expect that element "h1.heading-xlarge" contains the text "Primary Authority Register"
 
+#       # CHECK ALL AUTHORITY MEMBERS NOTIFIED #PAR-859 #PAR-962
+#
+#        And email body should contain all relevant EO data
+#
+#        # ALL AUTHORITY MEMBERS NOTIFIED #PAR-962
+#
+#        And I expect that notification email has been sent to all authority members
