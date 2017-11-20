@@ -12,9 +12,9 @@ services:
         - ../:/var/www/html
 
     db:
+      image: parbeta/postgres
       container_name: par_beta_db
       restart: always
-      image: postgres:9.6.3
       ports:
         - "5411:5432"
       environment:
