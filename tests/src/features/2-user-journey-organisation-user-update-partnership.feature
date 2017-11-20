@@ -1,4 +1,4 @@
-@Pending @Bug
+@ci
 Feature: Business User - Manage Addresses
 
     Scenario: Business User - Manage Addresses
@@ -56,9 +56,9 @@ Feature: Business User - Manage Addresses
         # ADD EMPLOYEES
 
         When I click on the link "edit number of employees"
-        And I select the option with the text "50-249" for element "#edit-employees-band"
+        And I select the option with the value "250" for element "#edit-employees-band"
         And I click on the button "#edit-save"
-        Then I expect that element "#edit-employee-no" contains the text "50-249"
+        Then I expect that element "#edit-employee-no" contains the text "50 to 249"
 
         # EDIT LEGAL ENTITY
 
@@ -74,12 +74,12 @@ Feature: Business User - Manage Addresses
 
         # ADD LEGAL ENTITY
 
-#        When I click on the link "add another legal entity"
-#        When I add "New Legal Entity" to the inputfield "#edit-registered-name"
-#        And I select the option with the text "Partnership" for element "#edit-legal-entity-type"
-#        And I click on the button "#edit-save"
-#        Then I expect that element "#edit-legal-entities" contains the text "New Legal Entity"
-#        Then I expect that element "#edit-legal-entities" contains the text "Partnership"
+        When I click on the link "add another legal entity"
+        When I add "New Legal Entity" to the inputfield "#edit-registered-name"
+        And I select the option with the text "Partnership" for element "#edit-legal-entity-type"
+        And I click on the button "#edit-save"
+        Then I expect that element "#edit-legal-entities" contains the text "New Legal Entity"
+        Then I expect that element "#edit-legal-entities" contains the text "Partnership"
 
         # ADD NEW TRADING NAME
 
@@ -109,4 +109,12 @@ Feature: Business User - Manage Addresses
 
         # COMPLETE CHANGES
 
+        When I click on the button "#edit-save"
+        And I click on the checkbox "#edit-partnership-info-agreed-business"
         And I click on the button "#edit-save"
+        And I select the option with the value "3" for element "#edit-partnership-status"
+        And I click on the button "#edit-submit-par-user-partnerships"
+        And I expect that element "#block-par-theme-content" contains the text "Business For Direct Partnership 1"
+
+
+
