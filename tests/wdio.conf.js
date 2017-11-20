@@ -48,7 +48,7 @@ exports.config = {
         //
         browserName: 'chrome',
     }],
-    
+
     bail: 1,
     //
     // ===================
@@ -120,7 +120,12 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/testrunner/reporters.html
-    reporters: ['spec'],
+    reporters: ['spec', 'json'],
+    reporterOptions: {
+        outputDir: './reports/',
+        filename: 'report',
+        combined: true
+    },
     //
     // If you are using Cucumber you need to specify the location of your step
     // definitions.

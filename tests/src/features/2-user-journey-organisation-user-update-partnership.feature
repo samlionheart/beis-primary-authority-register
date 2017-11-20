@@ -6,7 +6,6 @@ Feature: Business User - Manage Addresses
         # PARTNERSHIPS DASHBOARD
 
         Given I am logged in as "par_business@example.com"
-        When I open the url "/dashboard"
         And I click on the link "See your partnerships"
         And I click on the link "Business For Direct Partnership 1"
         And I expect that element "h1" is not empty
@@ -74,12 +73,12 @@ Feature: Business User - Manage Addresses
 
         # ADD LEGAL ENTITY
 
-        When I click on the link "add another legal entity"
-        When I add "New Legal Entity" to the inputfield "#edit-registered-name"
-        And I select the option with the text "Partnership" for element "#edit-legal-entity-type"
-        And I click on the button "#edit-save"
-        Then I expect that element "#edit-legal-entities" contains the text "New Legal Entity"
-        Then I expect that element "#edit-legal-entities" contains the text "Partnership"
+#        When I click on the link "add another legal entity"
+#        When I add "New Legal Entity" to the inputfield "#edit-registered-name"
+#        And I select the option with the text "Partnership" for element "#edit-legal-entity-type"
+#        And I click on the button "#edit-save"
+#        Then I expect that element "#edit-legal-entities" contains the text "New Legal Entity"
+#        Then I expect that element "#edit-legal-entities" contains the text "Partnership"
 
         # ADD NEW TRADING NAME
 
