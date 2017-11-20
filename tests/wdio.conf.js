@@ -85,6 +85,9 @@ exports.config = {
     // Default request retries count
     connectionRetryCount: 3,
     //
+    plugins: {
+        'wdio-screenshot': {}
+    },
     // Initialize the browser instance with a WebdriverIO plugin. The object
     // should have the plugin name as key and the desired plugin options as
     // properties. Make sure you have the plugin installed before running any
@@ -120,12 +123,21 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/testrunner/reporters.html
-    reporters: ['spec', 'json'],
+    reporters: ['json', 'spec', 'allure'],
     reporterOptions: {
         outputDir: './reports/',
         filename: 'report',
-        combined: true
+        combined: true,
+        allure: {
+            outputDir: './reports/allure/'
+        }
     },
+    //reporters: ['spec', 'json'],
+    //reporterOptions: {
+    //    outputDir: './reports/',
+    //    filename: 'report',
+    //    combined: true
+    //},
     //
     // If you are using Cucumber you need to specify the location of your step
     // definitions.

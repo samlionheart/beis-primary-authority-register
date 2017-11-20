@@ -47,7 +47,7 @@ Feature: New Direct Partnership For PA To Approve
 
         # CONFIRM YOUR AUTHORITY
 
-        And I click on the radio "#edit-business-regulated-by-one-authority-1"
+        And I click on the radio "#edit-business-regulated-by-one-authority-3"
         And I click on the radio "#edit-is-local-authority-1"
         When I click on the button "#edit-next"
         Then I expect that element "error-summary" is not visible
