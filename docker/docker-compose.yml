@@ -14,7 +14,7 @@ services:
     db:
       container_name: par_beta_db
       restart: always
-      image: postgres:9.6.3
+      image: parbeta/postgres:v2
       ports:
         - "5411:5432"
       environment:
