@@ -4,10 +4,11 @@ Feature: Coordinator User - Manage Addresses
     Scenario: Coordinator User - Manage Addresses
 
         # PARTNERSHIPS DASHBOARD
-
-#        Given I reset the test data
-        Given I am logged in as "par_coordinator@example.com"
-        When I open the url "/dashboard"
+        Given I open the url "/user/login"
+        And I add "par_coordinator@example.com" to the inputfield "#edit-name"
+        And I add "TestPassword" to the inputfield "#edit-pass"
+        When I click on the button "#edit-submit"
+        Then I expect that element "#block-par-theme-content" contains the text "See your partnerships"
         And I click on the link "See your partnerships"
         And I click on the link "Business For Coordinated Partnership 1"
         And I expect that element "h1" is not empty
