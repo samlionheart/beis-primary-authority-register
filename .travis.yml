@@ -4,6 +4,10 @@
 
 language: php
 
+sudo: required
+dist: trusty
+group: deprecated-2017Q4
+
 php:
   - 7.1
 
