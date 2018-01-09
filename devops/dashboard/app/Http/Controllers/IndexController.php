@@ -13,7 +13,8 @@ class IndexController extends Controller
      * @return void
      */
     public function __construct(
-        \App\Services\PubNubService $pubNubService,
+        \App\Services\CloudFoundryStatsService $cloudFoundryStatsService,
+        \App\Services\TestResultsService $testResultsService,
         \App\Services\UptimeRobotStatsService $uptimeRobotStatsService,
         \App\Services\BuildVersionService $buildVersionService,
         \App\Services\TravisStatsService $travisStatsService,
@@ -21,7 +22,8 @@ class IndexController extends Controller
     )
     {
         $this->services['uptime'] = $uptimeRobotStatsService;
-        $this->services['pubnub'] = $pubNubService;
+        $this->services['tests'] = $testResultsService;
+        $this->services['cf'] = $cloudFoundryStatsService;
         $this->services['travis'] = $travisStatsService;
         $this->services['github'] = $gitHubStatsService;
         $this->services['build_versions'] = $buildVersionService;
@@ -39,15 +41,15 @@ class IndexController extends Controller
 
     public function cloudFoundryStats()
     {
-        return Cache::remember('cloud_foundry_8', 1, function () {
-            return $this->services['pubnub']->stats('cloud_foundry_8');
+        return Cache::remember('cf', 1, function () {
+            return $this->services['cfss']->stats();
         });
     }
 
     public function testStats()
     {
         return Cache::remember('travis_tests', 120, function () {
-            return $this->services['pubnub']->stats('travis_tests');
+            return $this->services['trs']->stats();
         });
     }
 

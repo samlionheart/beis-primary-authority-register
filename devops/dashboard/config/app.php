@@ -164,6 +164,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        App\Providers\CloudFoundryStatsServiceProvider::class,
+        App\Providers\TestResultsServiceProvider::class,
         App\Providers\PubNubServiceProvider::class,
         App\Providers\GitHubStatsServiceProvider::class,
         App\Providers\TravisStatsServiceProvider::class,
