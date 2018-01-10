@@ -42,7 +42,7 @@ class IndexController extends Controller
     public function cloudFoundryStats()
     {
         return Cache::remember('cf', 1, function () {
-            return $this->services['cfss']->stats();
+            return $this->services['cf']->stats();
         });
     }
 
