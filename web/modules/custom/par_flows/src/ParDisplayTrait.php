@@ -259,7 +259,9 @@ trait ParDisplayTrait {
         else {
           $rows = $this->renderTextField($section, $entity, $field, $view_mode, $operations, $single_item);
         }
+      }
 
+      if ($rows) {
         // Render the rows using a tabulated pager.
         $element[$field_name] = $this->renderTable($rows);
       }
