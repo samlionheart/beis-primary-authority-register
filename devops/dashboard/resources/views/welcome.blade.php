@@ -292,16 +292,18 @@
       function renderCloudFoundryStats() {
         $.get("/stats/cf", function(data, status) {
 
+          console.log(data);
+
            var lastChecked = moment.unix(data.received_at);
            var minutes = moment.duration(moment().diff(lastChecked)).asMinutes();
            $('#last_cloud_foundry_check > .statcard-number').html('Last checked ' + lastChecked.fromNow());
            setUsageColor($('#last_cloud_foundry_check'), minutes, 10);
 
            for (i=0; i<{{ $cloudFoundryAppsToDisplay }}; i++) {
-             $('#state_' + i + " > .statcard-number").html(data.message[i].state == "RUNNING" ? "UP" : data[i].state);
+             $('#state_' + i + " > .statcard-number").html(data.message[i].state == "RUNNING" ? "UP" : data.message[i].state);
              setStateColor($('#state_' + i), data.message[i].state, ['RUNNING'], []);
 
-             $('#cpu_' + i + " > .statcard-number").html(parseFloat(data.message[i].stats.usage.cpu).toFixed(2) + '%');
+             $('#cpu_' + i + " > .statcard-number").html(parseFloat(data.message.instances[i].stats.usage.cpu).toFixed(2) + '%');
              setUsageColor($('#cpu_' + i), data.message[i].stats.usage.cpu, data.message[i].stats.cpu_quota);
 
              $('#memory_' + i + " > .statcard-number").html(parseFloat(data.message[i].stats.usage.mem / 1024 / 1024).toFixed(0) + '&nbsp;Mb');
