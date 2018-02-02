@@ -6,6 +6,7 @@
 
 use Drupal\par_data\Entity\ParDataEnforcementNotice;
 use Drupal\par_data\Entity\ParDataPartnership;
+use Drush\Log\LogLevel;
 
 /**
  * Implements hook_install().
@@ -254,4 +255,52 @@ function par_data_update_8017() {
  */
 function par_data_update_8018() {
   \Drupal::service('entity.definition_update_manager')->applyUpdates();
+}
+
+/**
+ * Migrate legal entities from organisation to partnership.
+ */
+function par_data_update_8019() {
+
+  $total_time = 0;
+
+  foreach (ParDataPartnership::loadMultiple() as $partnership) {
+
+    $time_start = microtime(true);
+
+    echo "\n";
+
+    $legal_entity_ids = [];
+
+    // Get partnership organisation entity.
+    $par_data_organisation = $partnership->getOrganisation(TRUE);
+
+    // Get all legal entities on organisation.
+    $legal_entities = $par_data_organisation->get('field_legal_entity')->referencedEntities();
+
+    if (empty($legal_entities)) {
+      echo "Skipped partnership {$partnership->id()} as no legal entities.";
+      continue;
+    }
+
+    // Get all legal entity IDs.
+    foreach ($legal_entities as $legal_entity) {
+      $legal_entity_ids[] = $legal_entity->id();
+    }
+
+    $legal_entities_as_list = print_r(implode(', ', $legal_entity_ids), 1);
+
+    echo "Migrating legal entities {$legal_entities_as_list} to {$partnership->id()}";
+
+    // Save legal entities to partnership legal entity reference field.
+    $partnership->set('field_legal_entity', $legal_entity_ids);
+
+    // Commit changes to partnership.
+    $partnership->save();
+
+    $execution_time = (microtime(true) - $time_start);
+
+    echo "(time in seconds: {$execution_time})";
+
+  }
 }

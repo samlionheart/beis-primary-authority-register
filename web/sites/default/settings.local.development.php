@@ -55,7 +55,7 @@ $settings['cache']['bins']['render'] = 'cache.backend.null';
  */
 $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
 
-ini_set('memory_limit', '512M');
+ini_set('memory_limit', -1);
 
 // Enable tota11y library.
 $settings['enable_tota11y'] = TRUE;

@@ -168,11 +168,39 @@ abstract class ParBaseForm extends FormBase implements ParBaseInterface {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
 
+    // Configure legal entity form to work nicely with multiple values.
+    $form['legal_entity'] = [
+      '#tree' => TRUE,
+    ];
+
+    $fields_to_display = $this->getFlowDataHandler()
+      ->getDefaultValues('fields_to_display', 1);
+
+    // Hidden field to persist between reloads.
+    $form['fields_to_display'] = [
+      '#type' => 'hidden',
+      '#default_value' => $fields_to_display,
+    ];
 
     // Add all the registered components to the form.
     foreach ($this->getComponents() as $weight => $component) {
-      $form = $component->getElements($form);
+      for ($i = 1; $i <= $fields_to_display; $i++) {
+//        $form['legal_entity'][$i] = $component->getElements($form, $i);
+      }
     }
+
+//    kint($form);
+
+    // "Add another legal entity" submit button (styled like a link).
+    $form['actions']['add_another'] = [
+      '#type' => 'submit',
+      '#name' => 'add_another',
+      '#submit' => ['::multipleItemActionsSubmit'],
+      '#value' => $this->t('Add Another New Legal Entity'),
+      '#attributes' => [
+        'class' => ['btn-link'],
+      ],
+    ];
 
     // Only ever place a 'done' action by itself.
     if ($this->getFlowNegotiator()->getFlow()->hasAction('done')) {
@@ -243,6 +271,25 @@ abstract class ParBaseForm extends FormBase implements ParBaseInterface {
     ];
 
     return $form + $cache;
+  }
+
+  public function multipleItemActionsSubmit(array &$form, FormStateInterface $form_state) {
+    $values = $this->cleanseFormDefaults($form_state->getValues());
+    $this->getFlowDataHandler()->setFormTempData($values);
+
+    // Get value of current amount of fields displayed.
+    $fields_to_display = $this->getFlowDataHandler()
+      ->getTempDataValue('fields_to_display');
+
+    $submit_action = $form_state->getTriggeringElement()['#name'];
+
+    // Check input button name to decide whether to add/remove a field.
+    $submit_action === 'add_another' ?
+      $fields_to_display++ : $fields_to_display--;
+
+    // Populate hidden field to generate more legal entity form elements.
+    $this->getFlowDataHandler()
+      ->setTempDataValue('fields_to_display', $fields_to_display);
   }
 
   /**

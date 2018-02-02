@@ -38,6 +38,7 @@ class ParLegalEntityMultipleForm extends ParFormPluginBase {
   }
 
   public function getLegalEntityFormElements($i = 1) {
+    var_dump("called {$i}");
     $legal_entity_bundle = $this->getParDataManager()->getParBundleEntity('par_data_legal_entity');
 
     $default_values = $this->getFlowDataHandler()
@@ -90,72 +91,49 @@ class ParLegalEntityMultipleForm extends ParFormPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function getElements($form = []) {
-    $fields_to_display = $this->getFlowDataHandler()
-      ->getDefaultValues('fields_to_display', 1);
+  public function getElements($form = [], $i = 1) {
+//    $fields_to_display = $this->getFlowDataHandler()
+//      ->getDefaultValues('fields_to_display', 1);
+//
+//    // Get selected legal entities from previous step in flow.
+//    $select_form_cid = $this->getFlowNegotiator()
+//      ->getFormKey('par_partnership_confirmation_select_legal_entities');
+//
+//    $selected_legal_entities = array_filter($this->getFlowDataHandler()
+//      ->getTempDataValue('field_legal_entity', $select_form_cid));
+//
+//    // Display list of selected legal entities for this partnership.
+//    if (!empty($selected_legal_entities)) {
+//      $form['existing_legal_entities'] = [
+//        '#type' => 'fieldset',
+//        '#attributes' => ['class' => 'form-group'],
+//        '#title' => $this->t('Existing legal entities on the primary authority register'),
+//        '#description' => $this->t('<p>Below is a list of your organisation’s legal entities currently on the primary authority register</p>'),
+//      ];
+//
+//      foreach (array_keys($selected_legal_entities) as $entity_id) {
+//        $entity = ParDataLegalEntity::load($entity_id);
+//
+//        $entity_view_builder = $this->getParDataManager()
+//          ->getViewBuilder($entity->getEntityTypeId());
+//
+//        $form['existing_legal_entities'][$entity->id()] = $entity_view_builder->view($entity, 'title');
+//      }
+//    }
+//
 
-    // Get selected legal entities from previous step in flow.
-    $select_form_cid = $this->getFlowNegotiator()
-      ->getFormKey('par_partnership_confirmation_select_legal_entities');
+//
+//    $form['legal_entity_intro'] = [
+//      '#type' => 'fieldset',
+//      '#title' => $this->t('What is a legal entity?'),
+//      'text' => [
+//        '#type' => 'markup',
+//        '#markup' => "<p>" . $this->t("A legal entity is any kind of individual or organisation that has legal standing. This can include a limited company or partnership, as well as other types of organisations such as trusts and charities.") . "</p>",
+//      ],
+//    ];
 
-    $selected_legal_entities = array_filter($this->getFlowDataHandler()
-      ->getTempDataValue('field_legal_entity', $select_form_cid));
+    return $this->getLegalEntityFormElements($i);
 
-    // Display list of selected legal entities for this partnership.
-    if (!empty($selected_legal_entities)) {
-      $form['existing_legal_entities'] = [
-        '#type' => 'fieldset',
-        '#attributes' => ['class' => 'form-group'],
-        '#title' => $this->t('Existing legal entities on the primary authority register'),
-        '#description' => $this->t('<p>Below is a list of your organisation’s legal entities currently on the primary authority register</p>'),
-      ];
-
-      foreach (array_keys($selected_legal_entities) as $entity_id) {
-        $entity = ParDataLegalEntity::load($entity_id);
-
-        $entity_view_builder = $this->getParDataManager()
-          ->getViewBuilder($entity->getEntityTypeId());
-
-        $form['existing_legal_entities'][$entity->id()] = $entity_view_builder->view($entity, 'title');
-      }
-    }
-
-    // Hidden field to persist between reloads.
-    $form['fields_to_display'] = [
-      '#type' => 'hidden',
-      '#default_value' => $fields_to_display,
-    ];
-
-    $form['legal_entity_intro'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('What is a legal entity?'),
-      'text' => [
-        '#type' => 'markup',
-        '#markup' => "<p>" . $this->t("A legal entity is any kind of individual or organisation that has legal standing. This can include a limited company or partnership, as well as other types of organisations such as trusts and charities.") . "</p>",
-      ],
-    ];
-
-    // Configure legal entity form to work nicely with multiple values.
-    $form['legal_entity'] = [
-      '#tree' => TRUE,
-    ];
-
-    for ($i = 1; $i <= $fields_to_display; $i++) {
-      // Add form elements.
-      $form['legal_entity'][$i] = $this->getLegalEntityFormElements($i);
-    }
-
-    // "Add another legal entity" submit button (styled like a link).
-    $form['actions']['add_another'] = [
-      '#type' => 'submit',
-      '#name' => 'add_another',
-      '#submit' => ['::multipleItemActionsSubmit'],
-      '#value' => $this->t('Add Another Legal Entity'),
-      '#attributes' => [
-        'class' => ['btn-link'],
-      ],
-    ];
-
-    return $form;
+//    return $form;
   }
 }

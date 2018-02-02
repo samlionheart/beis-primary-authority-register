@@ -99,6 +99,8 @@ trait ParControllerTrait {
       return $this->components;
     }
 
+    var_dump($this->getFlowNegotiator()->getFlow()->getCurrentStepComponents());
+
     // Load the plugins used to build this form.
     foreach ($this->getFlowNegotiator()->getFlow()->getCurrentStepComponents() as $weight => $component) {
       if ($plugin = $this->getFormBuilder()->createInstance($component)) {

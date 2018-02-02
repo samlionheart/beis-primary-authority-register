@@ -61,7 +61,16 @@ steps:
     route: par_partnership_confirmation_flows.add_legal_entity
     form_id: par_partnership_legal_entity_add_multiple
     components:
-      - legal_entity_add_multiple
+      - id: multiple_field
+        multiple: true
+        field:
+          - field_legal_entity
+        fields:
+          - registered_name
+          - registered_whatever
+          - registered_nope
+      multivalue_form:
+        yes: false
     redirect:
       cancel: 11
   9:
