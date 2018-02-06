@@ -48,7 +48,6 @@ exports.config = {
         //
         browserName: 'chrome',
     }],
-    bail: 1,
     //
     // ===================
     // Test Configurations
@@ -69,6 +68,7 @@ exports.config = {
     //
     // Saves a screenshot to a given path if a command fails.
     screenshotPath: './errorShots/',
+    failFast: true,
     //
     // Set a base URL in order to shorten url command calls. If your url
     // parameter starts with "/", then the base url gets prepended.
@@ -84,9 +84,6 @@ exports.config = {
     // Default request retries count
     connectionRetryCount: 3,
     //
-    //plugins: {
-    //    'wdio-screenshot': {}
-    //},
     // Initialize the browser instance with a WebdriverIO plugin. The object
     // should have the plugin name as key and the desired plugin options as
     // properties. Make sure you have the plugin installed before running any
@@ -101,8 +98,8 @@ exports.config = {
     //         misMatchTolerance: 0.05,
     //         screenWidth: [320,480,640,1024]
     //     },
-    //     //webdriverrtc: {browser: 'chrome'},
-    //     //browserevent: {}
+    //     webdriverrtc: {},
+    //     browserevent: {}
     // },
     //
     // Test runner services
@@ -122,14 +119,8 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/testrunner/reporters.html
-    reporters: ['json', 'spec'],
-    // Save test report to ./tests/reports/report.json
-    // see: http://webdriver.io/guide/testrunner/reporters.html
-    reporterOptions: {
-        outputDir: './reports/',
-        filename: 'report',
-        combined: true,
-    },
+    reporters: ['spec'],
+    //
     // If you are using Cucumber you need to specify the location of your step
     // definitions.
     cucumberOpts: {
@@ -174,8 +165,9 @@ exports.config = {
         // <boolean> add cucumber tags to feature or scenario name
         tagsInTitle: false,
         // <number> timeout for step definitions
-        timeout: 60000,
+        timeout: 20000,
     },
+
     //
     // =====
     // Hooks
@@ -203,10 +195,7 @@ exports.config = {
         global.assert = chai.assert;
         global.should = chai.should();
     },
-    //Hook that gets executed after the step has ended
-    //afterStep: function afterStep(stepResult) {
-    //        browser.saveScreenshot();
-    //}
+    //
     // Hook that gets executed before the suite starts
     // beforeSuite: function beforeSuite(suite) {
     // },
