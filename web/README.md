@@ -9,7 +9,7 @@ To configure the application run the following
     npm install
     npm run gulp
     composer install
-    sh ./docker/drupal-update.sh /var/www/html
+    sh ./drupal-update.sh /path/to/project/root
     
 You must run these commands every time you switch branch or change the applications configuration in any way.
 
@@ -30,11 +30,16 @@ To run code sniffer against any given module run
 
 More examples of running PHP Code Sniffer can be found in the [Drupal documentation](https://www.drupal.org/node/1419988)
 
-## ESLint
-
-
 ## Test Content and Stubs
 To test before we have any content it is probably better to:
 
 First enable the test content `/PATH/TO/PROJECT/ROOT/vendor/bin/drush en par_data_test -y`
 Then enable stubs `/PATH/TO/PROJECT/ROOT/vendor/bin/drush config-set par_data.settings stubbed true`
+
+# The Website: How and why it runs the way it runs!!
+
+The PAR site is comprised of a series of user journeys based on the [GDS design patterns](https://www.gov.uk/service-manual/design).
+
+We've represented these journeys as *Flow entities* within the system. So everything is based on flows.
+
+
