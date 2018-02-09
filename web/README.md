@@ -42,4 +42,9 @@ The PAR site is comprised of a series of user journeys based on the [GDS design 
 
 We've represented these journeys as *Flow entities* within the system. So everything is based on flows.
 
+Each new journey (hereon named 'flow') created _should_ be self contained and create:
+* the Flow entity
+* the routes definitions needed for each step of the journey
+* the controllers needed for these route definitions
+
 
