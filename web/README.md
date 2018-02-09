@@ -40,11 +40,12 @@ Then enable stubs `/PATH/TO/PROJECT/ROOT/vendor/bin/drush config-set par_data.se
 
 The PAR site is comprised of a series of user journeys based on the [GDS design patterns](https://www.gov.uk/service-manual/design).
 
-We've represented these journeys as *Flow entities* within the system. So everything is based on flows.
+We've represented these journeys as *Flow entities* within the system. Each flow defines a series of steps, pages & forms, that will be progressed through in a
 
-Each new journey (hereon named 'flow') created _should_ be self contained and create:
+Each flow _should_ be self contained, within it's own feature if possible, and comprise of:
 * the Flow entity
 * the routes definitions needed for each step of the journey
 * the controllers needed for these route definitions
 
 
+## Creating a new flow
