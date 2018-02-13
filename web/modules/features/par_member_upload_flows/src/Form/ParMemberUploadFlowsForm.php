@@ -8,12 +8,16 @@ use Drupal\par_flows\Form\ParBaseForm;
 use Drupal\file\Entity\File;
 
 //use Drupal\file\FileInterface;
-//use Drupal\par_partnership_flows\ParPartnershipFlowsTrait;
+use Drupal\par_partnership_flows\ParPartnershipFlowsTrait;
 
 /**
  * The partnership form for the premises details.
  */
 class ParMemberUploadFlowsForm extends ParBaseForm {
+
+  use ParPartnershipFlowsTrait;
+
+  protected $pageTitle = 'Upload First';
 
   /**
    * {@inheritdoc}
@@ -26,6 +30,12 @@ class ParMemberUploadFlowsForm extends ParBaseForm {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, ParDataPartnership $par_data_partnership = NULL) {
+
+//    $form['warning'] = [
+//      '#theme' => 'gds_warning',
+//      '#markup' => 'This operation will erase any existing list of members. If you are unsure, please click the ‘Cancel’ link (below) and contact the Help Desk.',
+//    ];
+
     // Multiple file field.
     $form['csv'] = [
       '#type' => 'managed_file',
@@ -50,6 +60,10 @@ class ParMemberUploadFlowsForm extends ParBaseForm {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+
+    parent::submitForm($form, $form_state);
+
+    $rows = [];
 
     // Process uploaded csv file.
     if ($csv = $this->getFlowDataHandler()->getTempDataValue('csv')) {
