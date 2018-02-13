@@ -1,8 +1,37 @@
 # A coordinated member journey for importing partnerships via csv file.
 par_member_upload_flows.member_upload:
-  path: '/partnership/{id}/members/upload'
+  path: '/partnership/{par_data_partnership}/members/upload'
   defaults:
     _form: '\Drupal\par_member_upload_flows\Form\ParMemberUploadFlowsForm'
-    _title: 'Uploading Members List - CSV'
+    _title_callback: '\Drupal\par_member_upload_flows\Form\ParMemberUploadFlowsForm::titleCallback'
   requirements:
     _permission: 'manage my organisations'
+    par_data_partnership: \d+
+  options:
+    parameters:
+      par_data_partnership:
+        type: entity:par_data_partnership
+par_member_upload_flows.member_upload_confirm:
+  path: '/partnership/{par_data_partnership}/members/upload/confirm'
+  defaults:
+    _form: '\Drupal\par_member_upload_flows\Form\ParMemberUploadFlowsConfirmForm'
+    _title_callback: '\Drupal\par_member_upload_flows\Form\ParMemberUploadFlowsConfirmForm::titleCallback'
+  requirements:
+    _permission: 'manage my organisations'
+    par_data_partnership: \d+
+  options:
+    parameters:
+      par_data_partnership:
+        type: entity:par_data_partnership
+par_member_upload_flows.member_upload_finish:
+  path: '/partnership/{par_data_partnership}/members/upload/finish'
+  defaults:
+    _controller: '\Drupal\par_member_upload_flows\Controller\ParMemberUploadFlowsFinishController::content'
+    _title_callback: '\Drupal\par_member_upload_flows\Controller\ParMemberUploadFlowsFinishController::titleCallback'
+  requirements:
+    _permission: 'manage my organisations'
+    par_data_partnership: \d+
+  options:
+    parameters:
+      par_data_partnership:
+        type: entity:par_data_partnership
